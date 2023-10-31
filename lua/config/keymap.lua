@@ -29,6 +29,7 @@ set("n", "<C-s>", "<cmd>w<cr>")
 set({ "i", "v" }, "<C-s>", "<Esc><cmd>w<cr>")
 set("n", "<leader>vs", "<cmd>vs<CR><cmd>wincmd l<CR>")
 set("n", "<leader>ct", "<cmd>tabclose<CR>")
+set("n", "<leader>cb", "<cmd>q<cr>")
 
 -- Diffview
 set("n", "<leader>ds", "<cmd>DiffviewOpen<cr>")
