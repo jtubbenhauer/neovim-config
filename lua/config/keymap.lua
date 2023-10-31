@@ -27,10 +27,11 @@ set("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
 -- General
 set("n", "<C-s>", "<cmd>w<cr>")
 set({ "i", "v" }, "<C-s>", "<Esc><cmd>w<cr>")
-<<<<<<< Updated upstream
 set("n", "<leader>vs", "<cmd>vs<CR><cmd>wincmd l<CR>")
-=======
+set("n", "<leader>ct", "<cmd>tabclose<CR>")
 
--- Neogit
-set("n", "<leader>ng", ":Neogit<CR>")
->>>>>>> Stashed changes
+-- Diffview
+set("n", "<leader>ds", "<cmd>DiffviewOpen<cr>")
+
+-- Lazygit
+set("n", "<leader>gg", "<cmd>LazyGit<cr>")
