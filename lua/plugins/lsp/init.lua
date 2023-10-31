@@ -17,9 +17,14 @@ local M = {
 			local lspconfig = require("lspconfig")
 			local util = require("lspconfig.util")
 			local angular_root_dir = util.root_pattern("angular.json", "project.json")
+			local git_root_dir = util.root_pattern(".git")
 
-			lspconfig.tsserver.setup({})
-			lspconfig.html.setup({})
+			lspconfig.tsserver.setup({
+				root_dir = git_root_dir,
+			})
+			lspconfig.html.setup({
+				root_dir = git_root_dir,
+			})
 			lspconfig.lua_ls.setup({
 				settings = {
 					Lua = {
