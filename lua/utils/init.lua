@@ -12,7 +12,7 @@ end
 M.git_changes = function()
 	if _G.comparison_branch then
 		require("fzf-lua").git_files({
-			cmd = string.format("git diff --name-only %s | sed -e 's|^(.*/)*(.*/[^/]*)$|\2|'", _G.comparison_branch),
+			cmd = string.format("git diff --name-only %s", _G.comparison_branch),
 		})
 	else
 		print("Set comparison branch with :CBranch <branch_name>")

@@ -3,9 +3,12 @@ local M = {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		require("fzf-lua").setup({
-			files = {
-				fzf_opts = {
-					["--keep-right"] = "",
+			winopts = {
+				height = 0.9,
+				width = 0.9,
+				preview = {
+					layout = "horizontal",
+					horizontal = "right:50%",
 				},
 			},
 		})
