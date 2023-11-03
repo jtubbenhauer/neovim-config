@@ -33,6 +33,7 @@ set("n", "<leader>cb", "<cmd>q<cr>")
 
 -- Diffview
 set("n", "<leader>ds", "<cmd>DiffviewOpen<cr>")
+set("n", "<leader>dc", "<cmd>DiffviewOpen HEAD ^origin<cr>")
 
 -- Lazygit
 set("n", "<leader>gg", "<cmd>LazyGit<cr>")

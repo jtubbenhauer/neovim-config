@@ -1,4 +1,6 @@
 {
+  "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
+  "LuaSnip": { "branch": "master", "commit": "80a8528f084a97b624ae443a6f50ff8074ba486b" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
   "conform.nvim": { "branch": "master", "commit": "3d639d6155a63e3143920b739cee02f3faa1b4db" },
   "diffview.nvim": { "branch": "main", "commit": "d38c1b5266850f77f75e006bcc26213684e1e141" },
@@ -8,7 +10,7 @@
   "gitsigns.nvim": { "branch": "main", "commit": "af0f583cd35286dd6f0e3ed52622728703237e50" },
   "lazy.nvim": { "branch": "main", "commit": "16603c6917435d8446f7357cb61095138a417085" },
   "lazygit.nvim": { "branch": "main", "commit": "de35012036d43bca03628d40d083f7c02a4cda3f" },
-  "lsp-progress.nvim": { "branch": "main", "commit": "df7a3d0d865d584552ab571295e73868e736e60f" },
+  "lsp-zero.nvim": { "branch": "v3.x", "commit": "bb874e8d832b66fa734b7b048d52eb9ed736bdcf" },
   "lualine.nvim": { "branch": "master", "commit": "2248ef254d0a1488a72041cfb45ca9caada6d994" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "7118be1ffe2b8d0a2bdeddf5b62af3b1bede1d76" },
   "mason.nvim": { "branch": "main", "commit": "cd7835b15f5a4204fc37e0aa739347472121a54c" },
