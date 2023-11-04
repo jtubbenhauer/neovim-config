@@ -26,16 +26,20 @@ local M = {
 				ensure_installed = { "tsserver", "angularls", "tailwindcss", "html" },
 				handlers = {
 					lsp.default_setup,
+
 					angularls = function()
 						require("lspconfig").angularls.setup({
 							root_dir = util.root_pattern(".git"),
 						})
 					end,
+
+					lua_ls = function()
+						require("lspconfig").lua_ls.setup({})
+					end,
 				},
 			})
 
 			local cmp = require("cmp")
-			local luasnip = require("luasnip")
 			cmp.setup({
 				mapping = cmp.mapping.preset.insert({
 					["<CR>"] = cmp.mapping.confirm({ select = true }),

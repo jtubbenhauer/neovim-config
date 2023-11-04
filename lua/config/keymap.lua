@@ -37,3 +37,7 @@ set("n", "<leader>dc", "<cmd>DiffviewOpen HEAD ^origin<cr>")
 
 -- Lazygit
 set("n", "<leader>gg", "<cmd>LazyGit<cr>")
+
+-- ChatGPT
+set("n", "<leader>ch", "<cmd>ChatGPT<cr>")
+set("n", "<leader>che", "<cmd>ChatGPTEditWithInstructions<cr>")

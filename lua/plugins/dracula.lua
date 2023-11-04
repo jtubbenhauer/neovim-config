@@ -17,11 +17,6 @@ local M = {
 			colors = {
 				fg = "#dcdcdc",
 			},
-			overrides = function(colors)
-				return {
-					DiffAdd = { guifg = colors.fg },
-				}
-			end,
 		})
 
 		vim.cmd([[colorscheme dracula]])
