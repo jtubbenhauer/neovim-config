@@ -31,5 +31,9 @@
         "/Users/jack/.local/share/nvim/lazy/lualine.nvim/lua",
         "/Users/jack/.config/nvim/lua",
         "${3rd}/luv/library"
-    ]
+    ],
+    "diagnostics.disable": [
+        "missing-fields"
+    ],
+    "workspace.checkThirdParty": false
 }

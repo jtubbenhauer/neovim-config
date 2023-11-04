@@ -17,6 +17,9 @@ local M = {
 			colors = {
 				fg = "#dcdcdc",
 			},
+			overrides = {
+				GitSignsCurrentLineBlame = { link = "Comment" },
+			},
 		})
 
 		vim.cmd([[colorscheme dracula]])
