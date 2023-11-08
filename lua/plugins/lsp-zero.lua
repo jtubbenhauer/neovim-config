@@ -23,7 +23,7 @@ local M = {
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "tsserver", "angularls", "tailwindcss", "html" },
+				ensure_installed = { "tsserver", "angularls", "tailwindcss", "eslint" },
 				handlers = {
 					lsp.default_setup,
 

@@ -16,10 +16,26 @@ local M = {
 		dracula.setup({
 			colors = {
 				fg = "#dcdcdc",
+				comment = "#7b88b3",
 			},
-			overrides = {
-				GitSignsCurrentLineBlame = { link = "Comment" },
-			},
+			overrides = function(colors)
+				return {
+					GitSignsCurrentLineBlame = { link = "Comment" },
+					["@lsp.type.property"] = { fg = colors.orange },
+					["@lsp.type.variable"] = { fg = colors.fg },
+					["@lsp.type.parameter"] = { fg = colors.fg },
+					["@type.builtin"] = { fg = colors.pink },
+					["@constructor"] = { fg = colors.pink },
+					["@variable.builtin"] = { fg = colors.pink },
+					["@variable"] = { fg = colors.green },
+					["@parameter"] = { fg = colors.fg },
+					["@property"] = { fg = colors.green },
+					["@attribute"] = { fg = colors.green },
+					["@operator"] = { fg = colors.fg },
+					["@lsp.type.class"] = { fg = colors.cyan },
+					["@keyword.function"] = { fg = colors.pink },
+				}
+			end,
 		})
 
 		vim.cmd([[colorscheme dracula]])
