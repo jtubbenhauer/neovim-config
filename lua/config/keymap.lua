@@ -5,6 +5,7 @@ set("n", "<leader>sf", ":lua require('telescope-pretty-pickers').prettyFilesPick
 set("n", "<leader>sg", ":lua require('telescope-pretty-pickers').prettyGrepPicker({ picker = 'live_grep' })<cr>")
 set("n", "<leader>so", ":lua require('telescope-pretty-pickers').prettyFilesPicker({ picker = 'oldfiles' })<cr>")
 set("n", "<leader>sr", ":Telescope resume<cr>")
+set("n", "<leader>sd", ":lua require('utils').oil_to_path()<cr>")
 
 -- File browser
 set("n", "<leader>ef", ":Oil . <cr>")
@@ -32,8 +33,8 @@ set("n", "<C-e>", "3<C-e>")
 set("n", "<C-y>", "3<C-y>")
 
 -- Diffview
-set("n", "<leader>ds", "<cmd>DiffviewOpen<cr>")
-set("n", "<leader>dc", "<cmd>DiffviewOpen origin/HEAD<cr>")
+set("n", "<leader>ds", ":lua require('utils').toggle_diffview_status()<cr>")
+set("n", "<leader>db", ":lua require('utils').toggle_diffview_branch()<cr>")
 
 -- Lazygit
 set("n", "<leader>gg", "<cmd>LazyGit<cr>")

@@ -25,6 +25,7 @@ o.tabstop = 2
 o.shiftwidth = 2
 wo.cursorline = true
 o.swapfile = false
+o.showtabline = 0
 vim.opt.fillchars = {
 	diff = " ",
 }

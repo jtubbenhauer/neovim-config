@@ -6,11 +6,28 @@ local M = {
 			options = {
 				globalstatus = true,
 			},
+			winbar = {
+				lualine_c = { { "filename", path = 1 } },
+				lualine_z = { "tabs" },
+			},
+			inactive_winbar = {
+				lualine_c = { { "filename", path = 1 } },
+			},
 			sections = {
 				lualine_c = {
 					{
 						"filename",
 						path = 1,
+					},
+				},
+				lualine_x = {
+					{
+						function()
+							return require("copilot_status").status_string()
+						end,
+						cnd = function()
+							return require("copilot_status").enabled()
+						end,
 					},
 				},
 			},

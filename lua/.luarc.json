@@ -30,6 +30,9 @@
         "/Users/jack/.local/share/nvim/lazy/nui.nvim/lua",
         "/Users/jack/.local/share/nvim/lazy/lualine.nvim/lua",
         "/Users/jack/.config/nvim/lua",
+        "${3rd}/luv/library",
+        "${3rd}/luassert/library",
+        "${3rd}/luassert/library",
         "${3rd}/luv/library"
     ],
     "diagnostics.disable": [

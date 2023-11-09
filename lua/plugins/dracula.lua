@@ -24,6 +24,7 @@ local M = {
 					["@lsp.type.property"] = { fg = colors.orange },
 					["@lsp.type.variable"] = { fg = colors.fg },
 					["@lsp.type.parameter"] = { fg = colors.fg },
+					["@lsp.type.class"] = { fg = colors.cyan },
 					["@type.builtin"] = { fg = colors.pink },
 					["@constructor"] = { fg = colors.pink },
 					["@variable.builtin"] = { fg = colors.pink },
@@ -32,7 +33,6 @@ local M = {
 					["@property"] = { fg = colors.green },
 					["@attribute"] = { fg = colors.green },
 					["@operator"] = { fg = colors.fg },
-					["@lsp.type.class"] = { fg = colors.cyan },
 					["@keyword.function"] = { fg = colors.pink },
 				}
 			end,
