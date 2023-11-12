@@ -23,7 +23,7 @@ local M = {
 			config = {
 				header = header,
 				project = { enable = false },
-				mru = { limit = 10 },
+				mru = { limit = 10, cwd_only = true },
 				footer = {},
 			},
 		})

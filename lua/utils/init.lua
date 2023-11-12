@@ -5,20 +5,6 @@ M.get_cwd = function()
 	return full_path:match("(.*[/\\])")
 end
 
-M.set_comparison_branch = function(branch)
-	_G.comparison_branch = branch
-end
-
-M.git_changes = function()
-	if _G.comparison_branch then
-		require("fzf-lua").git_files({
-			cmd = string.format("git diff --name-only %s", _G.comparison_branch),
-		})
-	else
-		print("Set comparison branch with :CBranch <branch_name>")
-	end
-end
-
 M.shorten_path = function(path)
 	return path:match(".*/(.*/[^/]+)$") or path
 end
@@ -58,7 +44,7 @@ end
 M.oil_to_path = function()
 	local fb = require("telescope").extensions.file_browser
 
-	fb.file_browser(require("telescope.themes").get_dropdown({
+	fb.file_browser({
 		files = false,
 		previewer = false,
 		attach_mappings = function(_, map)
@@ -69,7 +55,48 @@ M.oil_to_path = function()
 			end)
 			return true
 		end,
+	})
+end
+
+M.telescope_git_changes = function()
+	require("telescope.builtin").git_branches(require("telescope.themes").get_dropdown({
+		previewer = false,
+		attach_mappings = function(_, map)
+			map("i", "<CR>", function(prompt_bufnr)
+				local selection = require("telescope.actions.state").get_selected_entry()
+				require("telescope.actions").close(prompt_bufnr)
+				local easypick = require("easypick")
+				easypick.setup({
+					pickers = {
+						{
+							name = "changed_files",
+							command = "git diff --name-only $(git merge-base HEAD " .. selection.value .. " )",
+							previewer = easypick.previewers.branch_diff({ base_branch = selection.value }),
+							-- previewer = easypick.previewer.branch_diff({ base_branch = selection.value }),
+						},
+					},
+				})
+				vim.cmd("Easypick changed_files")
+			end)
+			return true
+		end,
 	}))
+end
+
+M.grep_directory = function()
+	local oil = require("oil")
+	local dir = oil.get_current_dir()
+
+	if dir == nil then
+		return
+	end
+
+	require("telescope-pretty-pickers").prettyGrepPicker({
+		picker = "live_grep",
+		options = {
+			search_dirs = { dir },
+		},
+	})
 end
 
 return M
