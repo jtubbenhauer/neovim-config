@@ -29,12 +29,26 @@ local M = {
 
 					angularls = function()
 						require("lspconfig").angularls.setup({
+							filetypes = {
+								"typescript",
+								"html",
+								"css",
+								"scss",
+							},
 							root_dir = util.root_pattern(".git"),
 						})
 					end,
 
 					lua_ls = function()
-						require("lspconfig").lua_ls.setup({})
+						require("lspconfig").lua_ls.setup({
+							settings = {
+								Lua = {
+									diagnostics = {
+										globals = { "vim" },
+									},
+								},
+							},
+						})
 					end,
 				},
 			})

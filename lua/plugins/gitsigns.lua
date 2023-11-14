@@ -7,7 +7,7 @@ local M = {
 				delay = 0,
 			},
 		})
-		require("scrollbar.handlers.gitsigns").setup()
+		-- require("scrollbar.handlers.gitsigns").setup()
 	end,
 }
 

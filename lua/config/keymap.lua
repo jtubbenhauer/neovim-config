@@ -1,19 +1,81 @@
 local set = vim.keymap.set
+local add = require("selfhelp").add
 
 -- Telescope
-set("n", "<leader>sf", ":lua require('telescope-pretty-pickers').prettyFilesPicker({ picker = 'find_files' })<cr>")
-set("n", "<leader>ss", ":Telescope git_status<cr>")
-set("n", "<leader>sc", ":lua require('utils').telescope_git_changes()<cr>")
-set("n", "<leader>sg", ":lua require('telescope-pretty-pickers').prettyGrepPicker({ picker = 'live_grep' })<cr>")
-set("n", "<leader>so", ":lua require('telescope-pretty-pickers').prettyFilesPicker({ picker = 'oldfiles' })<cr>")
-set("n", "<leader>sr", ":Telescope resume<cr>")
-set("n", "<leader>sd", ":lua require('utils').oil_to_path()<cr>")
-set("n", "<leader>si", ":lua require('utils').grep_directory()<cr>")
--- si to search in directory
+add({
+	mode = "n",
+	lhs = "<leader>sf",
+	rhs = ":lua require('telescope-pretty-pickers').prettyFilesPicker({ picker = 'find_files' })<cr>",
+	desc = "Search files",
+	category = "Search",
+})
+add({
+	mode = "n",
+	lhs = "<leader>ss",
+	rhs = ":Telescope git_status<cr>",
+	desc = "Search git status",
+	category = "Search",
+})
+add({
+	mode = "n",
+	lhs = "<leader>sc",
+	rhs = ":lua require('utils').telescope_git_changes()<cr>",
+	desc = "Search git changes",
+	category = "Search",
+})
+add({
+	mode = "n",
+	lhs = "<leader>sg",
+	rhs = ":lua require('telescope-pretty-pickers').prettyGrepPicker({ picker = 'live_grep' })<cr>",
+	desc = "Search live grep",
+	category = "Search",
+})
+add({
+	mode = "n",
+	lhs = "<leader>so",
+	rhs = ":lua require('telescope-pretty-pickers').prettyFilesPicker({ picker = 'oldfiles' })<cr>",
+	desc = "Search recent files",
+	category = "Search",
+})
+add({ mode = "n", lhs = "<leader>sr", rhs = ":Telescope resume<cr>", desc = "Resume last search", category = "Search" })
+add({
+	mode = "n",
+	lhs = "<leader>sd",
+	rhs = ":lua require('utils').oil_to_path()<cr>",
+	desc = "Search directory",
+	category = "Search",
+})
+add({
+	mode = "n",
+	lhs = "<leader>si",
+	rhs = ":lua require('utils').grep_directory()<cr>",
+	desc = "Grep in directory",
+	category = "Search",
+})
+
+add({
+	mode = "n",
+	lhs = "<leader>qq",
+	rhs = ":lua require('selfhelp').display_help()<cr>",
+	desc = "Show help",
+	category = "General",
+})
 
 -- File browser
-set("n", "<leader>ef", ":Oil . <cr>")
-set("n", "<leader>ed", ":Oil <cr>")
+add({
+	mode = "n",
+	lhs = "<leader>ef",
+	rhs = ":Oil .<cr>",
+	desc = "Open file browser in current directory",
+	category = "File Browser",
+})
+add({
+	mode = "n",
+	lhs = "<leader>ed",
+	rhs = ":Oil<cr>",
+	desc = "Open file browser in base directory",
+	category = "File Browser",
+})
 
 -- LSP
 set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
@@ -31,22 +93,39 @@ set({ "i", "v" }, "<C-s>", "<Esc><cmd>w<cr>")
 set("n", "<leader>vs", "<cmd>vs<CR><cmd>wincmd l<CR>")
 set("n", "<leader>ct", "<cmd>tabclose<CR>")
 set("n", "<leader>cb", "<cmd>q<cr>")
-set("n", "<leader>ye", ":let @* = execute('messages')<cr>")
-set("n", "<leader>ms", ":Messages messages<cr>")
+add({ mode = "n", lhs = "<leader>ms", rhs = ":Messages messages<cr>", desc = "Show messages", category = "General" })
 set("n", "<C-e>", "2<C-e>")
 set("n", "<C-y>", "2<C-y>")
 set({ "n", "i", "v" }, "<C-h>", ":vertical resize -5<CR>")
 set({ "n", "i", "v" }, "<C-l>", ":vertical resize +5<CR>")
 -- set({ "n", "i", "v" }, "<C-j>", ":resize -5<CR>")
 -- set({ "n", "i", "v" }, "<C-k>", ":resize +5<CR>")
-set("n", "<leader>ci", ":Inspect<CR>")
-set("n", "<leader>sv", ":SSave default<CR>")
-set("n", "<leader>sl", ":SLoad default<CR>")
+add({ mode = "n", lhs = "<leader>ci", rhs = ":Inspect<CR>", desc = "Inspect character", category = "General" })
+add({ mode = "n", lhs = "<leader>sv", rhs = ":SSave default<CR>", desc = "Save session", category = "Session" })
+add({ mode = "n", lhs = "<leader>sl", rhs = ":SLoad default<CR>", desc = "Load session", category = "Session" })
 
 -- Diffview
-set("n", "<leader>ds", ":lua require('utils').toggle_diffview_status()<CR>")
-set("n", "<leader>db", ":lua require('utils').toggle_diffview_branch()<CR>")
-set("n", "<leader>dh", ":DiffviewFileHistory %<CR>")
+add({
+	mode = "n",
+	lhs = "<leader>ds",
+	rhs = ":lua require('utils').toggle_diffview_status()<CR>",
+	desc = "Toggle diffview status",
+	category = "Diffview",
+})
+add({
+	mode = "n",
+	lhs = "<leader>db",
+	rhs = ":lua require('utils').toggle_diffview_branch()<CR>",
+	desc = "Toggle diffview branch",
+	category = "Diffview",
+})
+add({
+	mode = "n",
+	lhs = "<leader>dh",
+	rhs = ":DiffviewFileHistory %<CR>",
+	desc = "Diffview file history",
+	category = "Diffview",
+})
 
 -- Lazygit
 set("n", "<leader>gg", "<cmd>LazyGit<cr>")
@@ -56,4 +135,4 @@ set("n", "<leader>ch", "<cmd>ChatGPT<cr>")
 set("n", "<leader>che", "<cmd>ChatGPTEditWithInstructions<cr>")
 
 -- Aerial
-set("n", "<leader>ae", ":AerialToggle<cr>")
+add({ mode = "n", lhs = "<leader>ae", rhs = ":AerialToggle<cr>", desc = "Toggle Aerial", category = "Aerial" })
