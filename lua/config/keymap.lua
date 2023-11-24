@@ -32,12 +32,19 @@ add({
 })
 add({
 	mode = "n",
+	lhs = "<leader>sh",
+	rhs = ":lua require('telescope-pretty-pickers').prettyGrepPicker({ picker = 'live_grep', { vimgrep_arguments = {'--hidden'} } })<cr>",
+	desc = "Search live grep (hidden)",
+	category = "Search",
+})
+add({
+	mode = "n",
 	lhs = "<leader>so",
 	rhs = ":lua require('telescope-pretty-pickers').prettyFilesPicker({ picker = 'oldfiles' })<cr>",
 	desc = "Search recent files",
 	category = "Search",
 })
-add({ mode = "n", lhs = "<leader>sr", rhs = ":Telescope resume<cr>", desc = "Resume last search", category = "Search" })
+add({ mode = "n", lhs = "<leader>sa", rhs = ":Telescope resume<cr>", desc = "Resume last search", category = "Search" })
 add({
 	mode = "n",
 	lhs = "<leader>sd",
@@ -56,7 +63,7 @@ add({
 add({
 	mode = "n",
 	lhs = "<leader>qq",
-	rhs = ":lua require('selfhelp').display_help()<cr>",
+	rhs = ":SelfHelp<cr>",
 	desc = "Show help",
 	category = "General",
 })
@@ -136,3 +143,21 @@ set("n", "<leader>che", "<cmd>ChatGPTEditWithInstructions<cr>")
 
 -- Aerial
 add({ mode = "n", lhs = "<leader>ae", rhs = ":AerialToggle<cr>", desc = "Toggle Aerial", category = "Aerial" })
+
+-- Spectre
+add({
+	mode = "n",
+	lhs = "<leader>sr",
+	rhs = ":lua require('spectre').toggle()<cr>",
+	desc = "Search and replace",
+	category = "Spectre",
+})
+
+-- Gitsigns
+add({
+	mode = "n",
+	lhs = "<leader>gsb",
+	rhs = ':lua require("utils").change_git_signs_base()<cr>',
+	desc = "Change git signs base branch",
+	category = "Git",
+})

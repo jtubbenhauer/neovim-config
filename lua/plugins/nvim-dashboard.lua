@@ -24,6 +24,10 @@ local M = {
 				header = header,
 				project = { enable = false },
 				mru = { limit = 10, cwd_only = true },
+				shortcut = {
+					{ desc = "[  Github]", group = "DashboardShortCut" },
+					{ desc = "[  jtubbenhauer]", group = "DashboardShortCut" },
+				},
 				footer = {},
 			},
 		})

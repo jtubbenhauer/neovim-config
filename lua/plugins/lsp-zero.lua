@@ -23,9 +23,42 @@ local M = {
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "tsserver", "angularls", "tailwindcss", "eslint" },
+				ensure_installed = { "vtsls", "angularls", "tailwindcss", "eslint" },
 				handlers = {
 					lsp.default_setup,
+
+					-- tsserver = function()
+					-- 	require("lspconfig").tsserver.setup({
+					-- 		filetypes = {
+					-- 			"typescript",
+					-- 			"typescriptreact",
+					-- 			"typescript.tsx",
+					-- 			"javascript",
+					-- 			"javascriptreact",
+					-- 			"javascript.jsx",
+					-- 			"html",
+					-- 			"css",
+					-- 			"scss",
+					-- 		},
+					-- 		root_dir = util.root_pattern(".git"),
+					-- 	})
+					-- end,
+					vtsls = function()
+						require("lspconfig").vtsls.setup({
+							filetypes = {
+								"typescript",
+								"typescriptreact",
+								"typescript.tsx",
+								"javascript",
+								"javascriptreact",
+								"javascript.jsx",
+								"html",
+								"css",
+								"scss",
+							},
+							root_dir = util.root_pattern(".git"),
+						})
+					end,
 
 					angularls = function()
 						require("lspconfig").angularls.setup({

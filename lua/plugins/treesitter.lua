@@ -7,6 +7,9 @@ local M = {
 			ensure_installed = { "c", "lua", "vim", "vimdoc", "javascript", "typescript", "html" },
 			highlight = { enable = true },
 			auto_install = true,
+			cond = function(_, bufnr)
+				return not api.nvim_buf_line_count(bufnr) > 2000
+			end,
 		})
 	end,
 }
