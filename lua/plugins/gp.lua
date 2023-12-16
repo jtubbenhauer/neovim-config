@@ -4,14 +4,7 @@ local M = {
 		local env = require("utils.env")
 		require("gp").setup({
 			openai_api_key = env.OPENAI_KEY,
-			chat_model = { model = "gpt-4-1106-preview", temperature = 0.3, top_p = 0.3 },
 		})
-
-		-- or setup with your own config (see Install > Configuration in Readme)
-		-- require("gp").setup(conf)
-
-		-- shortcuts might be setup here (see Usage > Shortcuts in Readme)
-
 		local function keymapOptions(desc)
 			return {
 				noremap = true,
@@ -52,6 +45,7 @@ local M = {
 		vim.keymap.set("v", "<C-g>p", ":<C-u>'<,'>GpPopup<cr>", keymapOptions("Visual Popup"))
 
 		vim.keymap.set({ "n", "i", "v", "x" }, "<C-g>s", "<cmd>GpStop<cr>", keymapOptions("Stop"))
+		vim.keymap.set({ "n", "i", "v", "x" }, "<C-g>n", "<cmd>GpNextAgent<cr>", keymapOptions("Next Agent"))
 	end,
 }
 

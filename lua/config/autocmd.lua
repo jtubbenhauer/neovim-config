@@ -1,5 +1,3 @@
-vim.cmd([[ highlight IndentBlankLineIndent1 guifg=#454545 gui=nocombine ]])
-
 vim.cmd([[
 augroup highlight_yank
 autocmd!
@@ -29,3 +27,9 @@ vim.api.nvim_create_user_command("FormatEnable", function()
 end, {
 	desc = "Re-enable autoformat-on-save",
 })
+
+vim.cmd([[
+au WinNew * au BufEnter * ++once
+  \ if (&bt ==? 'help' || &ft ==? 'man')
+  \ && winwidth(winnr('#')) >= 180 | wincmd L | endif
+]])

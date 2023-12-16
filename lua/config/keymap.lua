@@ -2,6 +2,7 @@ local set = vim.keymap.set
 local add = require("selfhelp").add
 
 -- Telescope
+set("n", "<leader>ff", ":lua require('utils').test_fzf()<cr>")
 add({
 	mode = "n",
 	lhs = "<leader>sf",
@@ -71,16 +72,16 @@ add({
 -- File browser
 add({
 	mode = "n",
-	lhs = "<leader>ef",
+	lhs = "<leader>er",
 	rhs = ":Oil .<cr>",
-	desc = "Open file browser in current directory",
+	desc = "Open file browser in root directory",
 	category = "File Browser",
 })
 add({
 	mode = "n",
 	lhs = "<leader>ed",
 	rhs = ":Oil<cr>",
-	desc = "Open file browser in base directory",
+	desc = "Open file browser in current directory",
 	category = "File Browser",
 })
 
@@ -134,9 +135,6 @@ add({
 	category = "Diffview",
 })
 
--- Lazygit
-set("n", "<leader>gg", "<cmd>LazyGit<cr>")
-
 -- ChatGPT
 set("n", "<leader>ch", "<cmd>ChatGPT<cr>")
 set("n", "<leader>che", "<cmd>ChatGPTEditWithInstructions<cr>")
@@ -161,3 +159,14 @@ add({
 	desc = "Change git signs base branch",
 	category = "Git",
 })
+
+-- Terminal
+add({
+	mode = "n",
+	lhs = "<leader>tt",
+	rhs = ':lua require("utils").toggleterm_cwd()<cr>',
+	desc = "Open terminal in current directory",
+	category = "Terminal",
+})
+
+-- Harpoon

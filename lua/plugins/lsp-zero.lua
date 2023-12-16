@@ -69,6 +69,9 @@ local M = {
 								"scss",
 							},
 							root_dir = util.root_pattern(".git"),
+							on_init = function(client)
+								client.server_capabilities.renameProvider = false
+							end,
 						})
 					end,
 
@@ -90,7 +93,7 @@ local M = {
 			cmp.setup({
 				mapping = cmp.mapping.preset.insert({
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-a>"] = cmp.mapping.complete(),
 					["<C-j>"] = cmp.mapping.select_next_item(),
 					["<C-k>"] = cmp.mapping.select_prev_item(),
 				}),

@@ -10,6 +10,9 @@ local M = {
 			cond = function(_, bufnr)
 				return not api.nvim_buf_line_count(bufnr) > 2000
 			end,
+			autotag = {
+				enable_close_on_slash = false,
+			},
 		})
 	end,
 }

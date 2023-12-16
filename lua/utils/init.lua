@@ -113,4 +113,18 @@ M.change_git_signs_base = function()
 	}))
 end
 
+M.test_fzf = function()
+	require("fzf-lua").files({
+		fn_transform = function(entry)
+			print(require("fzf-lua").make_entry.file(entry))
+			return entry
+		end,
+	})
+end
+
+M.toggleterm_cwd = function()
+	local cwd = M.get_cwd()
+	vim.cmd('TermExec cmd="source ~/.zshrc && source ~/.nvm/nvm.sh && nvm use 18" direction=tab dir=' .. cwd)
+end
+
 return M
