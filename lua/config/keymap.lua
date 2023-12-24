@@ -151,12 +151,19 @@ add({
 	category = "Spectre",
 })
 
--- Gitsigns
+-- Git
 add({
 	mode = "n",
 	lhs = "<leader>gsb",
 	rhs = ':lua require("utils").change_git_signs_base()<cr>',
 	desc = "Change git signs base branch",
+	category = "Git",
+})
+add({
+	mode = "n",
+	lhs = "<leader>gs",
+	rhs = ":vertical G<cr>",
+	desc = "Git status",
 	category = "Git",
 })
 

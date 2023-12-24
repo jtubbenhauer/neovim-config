@@ -1,8 +1,11 @@
 local M = {
-	"jtubbenhauer/oil.nvim",
-	opts = {},
-	-- Optional dependencies
+	"stevearc/oil.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	config = function()
+		require("oil").setup({
+			lsp_rename_autosave = true,
+		})
+	end,
 }
 
-return {}
+return M
