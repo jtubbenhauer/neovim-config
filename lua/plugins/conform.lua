@@ -14,7 +14,9 @@ local M = {
 				xml = { "xmlformatter" },
 				python = { "black" },
 				go = { "gopls" },
-				json = { "jq" },
+				json = { "prettier" },
+				jsonc = { "prettier" },
+				cpp = { "clang-format" },
 			},
 			format_on_save = function(bufnr)
 				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then

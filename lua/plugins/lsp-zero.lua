@@ -9,12 +9,15 @@ local M = {
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/nvim-cmp" },
 			{ "L3MON4D3/LuaSnip" },
+			{ "mfussenegger/nvim-dap" },
+			{ "jay-babu/mason-nvim-dap.nvim" },
+			{ "rcarriga/nvim-dap-ui" },
 		},
 		config = function()
+			vim.g.lsp_zero_extend_lspconfig = 0
 			local lsp = require("lsp-zero")
-			local util = require("lspconfig").util
 			lsp.extend_lspconfig()
-
+			local util = require("lspconfig").util
 			lsp.on_attach(function(_, bufnr)
 				-- see :help lsp-zero-keybindings
 				-- to learn the available actions
@@ -22,10 +25,19 @@ local M = {
 			end)
 
 			require("mason").setup()
+			require("mason-nvim-dap").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "vtsls", "angularls", "tailwindcss", "eslint" },
 				handlers = {
 					lsp.default_setup,
+
+					angularls = function()
+						require("lspconfig").angularls.setup({
+							root_dir = util.root_pattern("angular.json", "project.json", ".git"),
+							on_init = function(client)
+								client.server_capabilities.renameProvider = false
+							end,
+						})
+					end,
 
 					-- tsserver = function()
 					-- 	require("lspconfig").tsserver.setup({
@@ -40,40 +52,8 @@ local M = {
 					-- 			"css",
 					-- 			"scss",
 					-- 		},
-					-- 		root_dir = util.root_pattern(".git"),
 					-- 	})
 					-- end,
-					vtsls = function()
-						require("lspconfig").vtsls.setup({
-							filetypes = {
-								"typescript",
-								"typescriptreact",
-								"typescript.tsx",
-								"javascript",
-								"javascriptreact",
-								"javascript.jsx",
-								"html",
-								"css",
-								"scss",
-							},
-							root_dir = util.root_pattern(".git"),
-						})
-					end,
-
-					angularls = function()
-						require("lspconfig").angularls.setup({
-							filetypes = {
-								"typescript",
-								"html",
-								"css",
-								"scss",
-							},
-							root_dir = util.root_pattern(".git"),
-							on_init = function(client)
-								client.server_capabilities.renameProvider = false
-							end,
-						})
-					end,
 
 					lua_ls = function()
 						require("lspconfig").lua_ls.setup({

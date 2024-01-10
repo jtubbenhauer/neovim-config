@@ -1,5 +1,5 @@
 local M = {
-	"stevearc/dressing.nvim",
+	dir = "~/dev/nvim-plugins/dressing.nvim",
 	opts = {},
 }
 

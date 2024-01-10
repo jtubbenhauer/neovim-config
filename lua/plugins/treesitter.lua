@@ -1,10 +1,10 @@
 local M = {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	dependencies = { "elgiano/nvim-treesitter-angular", branch = "topic/jsx-fix" },
+	-- dependencies = { "elgiano/nvim-treesitter-angular", branch = "topic/jsx-fix" },
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "c", "lua", "vim", "vimdoc", "javascript", "typescript", "html" },
+			ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript", "html" },
 			highlight = { enable = true },
 			auto_install = true,
 			cond = function(_, bufnr)

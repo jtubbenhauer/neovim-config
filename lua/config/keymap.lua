@@ -26,6 +26,13 @@ add({
 })
 add({
 	mode = "n",
+	lhs = "<leader>qf",
+	rhs = ":lua require('telescope.builtin').quickfix()<cr>",
+	desc = "Search quickfix",
+	category = "Search",
+})
+add({
+	mode = "n",
 	lhs = "<leader>sg",
 	rhs = ":lua require('telescope-pretty-pickers').prettyGrepPicker({ picker = 'live_grep' })<cr>",
 	desc = "Search live grep",
@@ -167,13 +174,11 @@ add({
 	category = "Git",
 })
 
--- Terminal
+-- Oil
 add({
 	mode = "n",
-	lhs = "<leader>tt",
-	rhs = ':lua require("utils").toggleterm_cwd()<cr>',
-	desc = "Open terminal in current directory",
-	category = "Terminal",
+	lhs = "<leader>dc",
+	rhs = ":lua require('utils').get_trimmed_cwd()<cr>",
+	desc = "Print current oil directory",
+	category = "Oil",
 })
-
--- Harpoon

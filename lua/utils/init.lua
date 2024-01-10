@@ -5,6 +5,25 @@ M.get_cwd = function()
 	return full_path:match("(.*[/\\])")
 end
 
+M.get_trimmed_cwd = function()
+	local cwd = M.get_cwd()
+	local is_oil_buffer = string.find(cwd, "oil")
+
+	if is_oil_buffer == nil then
+		return
+	end
+
+	local path = string.gsub(cwd, "oil:///Users/jack", "~")
+	local pboard = io.popen("pbcopy", "w")
+
+	if pboard == nil then
+		return
+	end
+
+	pboard:write(path)
+	pboard:close()
+end
+
 M.shorten_path = function(path)
 	return path:match(".*/(.*/[^/]+)$") or path
 end
