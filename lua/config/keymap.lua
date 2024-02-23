@@ -13,6 +13,7 @@ add({
 add({
 	mode = "n",
 	lhs = "<leader>ss",
+	-- rhs = ":lua require('telescope-pretty-pickers').prettyGitPicker({ picker = 'git_status' })<cr>",
 	rhs = ":Telescope git_status<cr>",
 	desc = "Search git status",
 	category = "Search",
