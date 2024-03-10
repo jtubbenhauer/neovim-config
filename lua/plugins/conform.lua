@@ -1,3 +1,4 @@
+'wow'
 local M = {
 	"stevearc/conform.nvim",
 	config = function()
