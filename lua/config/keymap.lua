@@ -1,7 +1,11 @@
 local set = vim.keymap.set
 local add = require("selfhelp").add
 
+-- :let @+=expand('%:p')
+-- this copies the full path of the current file to the clipboard
+
 -- Telescope
+
 set("n", "<leader>ff", ":lua require('utils').test_fzf()<cr>")
 add({
 	mode = "n",
@@ -30,6 +34,13 @@ add({
 	lhs = "<leader>qf",
 	rhs = ":lua require('telescope.builtin').quickfix()<cr>",
 	desc = "Search quickfix",
+	category = "Search",
+})
+add({
+	mode = "n",
+	lhs = "<leader>sw",
+	rhs = ":lua require('telescope.builtin').grep_string()<cr>",
+	desc = "Grep word under cursor",
 	category = "Search",
 })
 add({
