@@ -1,74 +1,70 @@
 local set = vim.keymap.set
 local add = require("selfhelp").add
 
--- :let @+=expand('%:p')
--- this copies the full path of the current file to the clipboard
+local gs = require("gitsigns")
+set("n", "<leader>hr", gs.reset_hunk)
+-- Fzf
 
--- Telescope
-
-set("n", "<leader>ff", ":lua require('utils').test_fzf()<cr>")
 add({
 	mode = "n",
 	lhs = "<leader>sf",
-	rhs = ":lua require('telescope-pretty-pickers').prettyFilesPicker({ picker = 'find_files' })<cr>",
+	rhs = ":lua require('fzf-lua').files()<cr>",
 	desc = "Search files",
 	category = "Search",
 })
 add({
 	mode = "n",
 	lhs = "<leader>ss",
-	-- rhs = ":lua require('telescope-pretty-pickers').prettyGitPicker({ picker = 'git_status' })<cr>",
-	rhs = ":Telescope git_status<cr>",
+	rhs = ":lua require('fzf-lua').git_status()<cr>",
 	desc = "Search git status",
 	category = "Search",
 })
 add({
 	mode = "n",
 	lhs = "<leader>sc",
-	rhs = ":lua require('utils').telescope_git_changes()<cr>",
+	rhs = ":lua require('utils').fzf_git_changes()<cr>",
 	desc = "Search git changes",
 	category = "Search",
 })
 add({
 	mode = "n",
 	lhs = "<leader>qf",
-	rhs = ":lua require('telescope.builtin').quickfix()<cr>",
+	rhs = ":lua require('fzf-lua').quickfix()<cr>",
 	desc = "Search quickfix",
 	category = "Search",
 })
-add({
-	mode = "n",
-	lhs = "<leader>sw",
-	rhs = ":lua require('telescope.builtin').grep_string()<cr>",
-	desc = "Grep word under cursor",
-	category = "Search",
-})
+-- add({
+-- 	mode = "n",
+-- 	lhs = "<leader>sw",
+-- 	rhs = ":lua require('telescope.builtin').grep_string()<cr>",
+-- 	desc = "Grep word under cursor",
+-- 	category = "Search",
+-- })
 add({
 	mode = "n",
 	lhs = "<leader>sg",
-	rhs = ":lua require('telescope-pretty-pickers').prettyGrepPicker({ picker = 'live_grep' })<cr>",
+	rhs = ":lua require('fzf-lua').live_grep()<cr>",
 	desc = "Search live grep",
 	category = "Search",
 })
 add({
 	mode = "n",
-	lhs = "<leader>sh",
-	rhs = ":lua require('telescope-pretty-pickers').prettyGrepPicker({ picker = 'live_grep', { vimgrep_arguments = {'--hidden'} } })<cr>",
-	desc = "Search live grep (hidden)",
-	category = "Search",
-})
-add({
-	mode = "n",
 	lhs = "<leader>so",
-	rhs = ":lua require('telescope-pretty-pickers').prettyFilesPicker({ picker = 'oldfiles' })<cr>",
+	rhs = ":lua require('fzf-lua').oldfiles()<cr>",
 	desc = "Search recent files",
 	category = "Search",
 })
-add({ mode = "n", lhs = "<leader>sa", rhs = ":Telescope resume<cr>", desc = "Resume last search", category = "Search" })
+add({
+	mode = "n",
+	lhs = "<leader>sa",
+	rhs = ":lua require('fzf-lua').resume()<cr>",
+	desc = "Resume last search",
+	category = "Search",
+})
 add({
 	mode = "n",
 	lhs = "<leader>sd",
-	rhs = ":lua require('utils').oil_to_path()<cr>",
+	rhs = ":lua require('utils').fzf_dirs()<cr>",
 	desc = "Search directory",
 	category = "Search",
 })
@@ -110,9 +106,15 @@ set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>")
 set("n", "gn", ":lua vim.diagnostic.goto_next()<CR>")
 set("n", "gp", ":lua vim.diagnostic.goto_prev()<CR>")
 set("n", "ge", ":lua vim.diagnostic.open_float()<CR>")
-set("n", "gd", ":Telescope lsp_definitions<CR>")
-set("n", "gr", ":Telescope lsp_references<CR>")
+set("n", "gd", ":lua require('fzf-lua').lsp_definitions()<CR>")
+set("n", "gr", ":lua require('fzf-lua').lsp_references()<CR>")
 set("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
+
+vim.keymap.set("n", "<leader>ti", function()
+	-- vim.b[bufnr].inlay_hints_enabled = not vim.b[bufnr].inlay_hints_enabled
+	-- vim.lsp.inlay_hint(bufnr, vim.b[bufnr].inlay_hints_enabled)
+	vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
+end, { desc = "LSP: [T]oggle [I]nlay Hints" })
 
 -- General
 set("n", "<C-s>", "<cmd>w<cr>")
@@ -125,8 +127,6 @@ set("n", "<C-e>", "2<C-e>")
 set("n", "<C-y>", "2<C-y>")
 set({ "n", "i", "v" }, "<C-h>", ":vertical resize -5<CR>")
 set({ "n", "i", "v" }, "<C-l>", ":vertical resize +5<CR>")
--- set({ "n", "i", "v" }, "<C-j>", ":resize -5<CR>")
--- set({ "n", "i", "v" }, "<C-k>", ":resize +5<CR>")
 add({ mode = "n", lhs = "<leader>ci", rhs = ":Inspect<CR>", desc = "Inspect character", category = "General" })
 add({ mode = "n", lhs = "<leader>sv", rhs = ":SSave default<CR>", desc = "Save session", category = "Session" })
 add({ mode = "n", lhs = "<leader>sl", rhs = ":SLoad default<CR>", desc = "Load session", category = "Session" })

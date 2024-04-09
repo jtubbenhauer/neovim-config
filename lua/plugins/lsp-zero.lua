@@ -39,6 +39,12 @@ local M = {
 						})
 					end,
 
+					-- vtsls = function()
+					-- 	require("lspconfig").vtsls.setup({
+					-- 		capabilities = capabilities,
+					-- 	})
+					-- end,
+
 					-- tsserver = function()
 					-- 	require("lspconfig").tsserver.setup({
 					-- 		filetypes = {

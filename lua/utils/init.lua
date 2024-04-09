@@ -46,104 +46,75 @@ M.toggle_diffview_branch = function()
 	if view then
 		vim.cmd.DiffviewClose()
 	else
-		require("telescope.builtin").git_branches(require("telescope.themes").get_dropdown({
-			previewer = false,
-			attach_mappings = function(_, map)
-				map("i", "<CR>", function(prompt_bufnr)
-					local selection = require("telescope.actions.state").get_selected_entry()
-					require("telescope.actions").close(prompt_bufnr)
-					vim.cmd("DiffviewOpen " .. selection.value)
-				end)
-				return true
-			end,
-		}))
+		require("fzf-lua").git_branches({
+			actions = {
+				["default"] = function(selected)
+					vim.cmd("DiffviewOpen " .. selected[1])
+				end,
+			},
+		})
 	end
 end
 
-M.oil_to_path = function()
-	local fb = require("telescope").extensions.file_browser
-
-	fb.file_browser({
-		files = false,
-		previewer = false,
-		attach_mappings = function(_, map)
-			map("i", "<CR>", function(prompt_bufnr)
-				local selection = require("telescope.actions.state").get_selected_entry()
-				require("telescope.actions").close(prompt_bufnr)
-				vim.cmd("Oil " .. selection.value)
-			end)
-			return true
+M.fzf_dirs = function(opts)
+	local fzf_lua = require("fzf-lua")
+	opts = opts or {}
+	opts.prompt = "Directories> "
+	opts.fn_transform = function(x)
+		return fzf_lua.utils.ansi_codes.magenta(x)
+	end
+	opts.actions = {
+		["default"] = function(selected)
+			local cwd = vim.fn.getcwd()
+			vim.cmd("Oil " .. cwd .. "/" .. selected[1])
 		end,
-	})
+	}
+	fzf_lua.fzf_exec("fd --type d", opts)
 end
 
-M.telescope_git_changes = function()
-	require("telescope.builtin").git_branches(require("telescope.themes").get_dropdown({
-		previewer = false,
-		attach_mappings = function(_, map)
-			map("i", "<CR>", function(prompt_bufnr)
-				local selection = require("telescope.actions.state").get_selected_entry()
-				require("telescope.actions").close(prompt_bufnr)
-				local easypick = require("easypick")
-				easypick.setup({
-					pickers = {
-						{
-							name = "changed_files",
-							command = "git diff --name-only $(git merge-base HEAD " .. selection.value .. " )",
-							previewer = easypick.previewers.branch_diff({ base_branch = selection.value }),
-							-- previewer = easypick.previewer.branch_diff({ base_branch = selection.value }),
-						},
-					},
+M.fzf_git_changes = function()
+	require("fzf-lua").git_branches({
+		actions = {
+			["default"] = function(selected)
+				require("fzf-lua").git_files({
+					cmd = "git diff --name-only " .. selected[1],
 				})
-				vim.cmd("Easypick changed_files")
-			end)
-			return true
-		end,
-	}))
+			end,
+		},
+	})
 end
 
 M.grep_directory = function()
 	local oil = require("oil")
 	local dir = oil.get_current_dir()
-
 	if dir == nil then
 		return
 	end
-
-	require("telescope-pretty-pickers").prettyGrepPicker({
-		picker = "live_grep",
-		options = {
-			search_dirs = { dir },
-		},
+	require("fzf-lua").live_grep({
+		cwd = dir,
 	})
 end
 
 M.change_git_signs_base = function()
-	require("telescope.builtin").git_branches(require("telescope.themes").get_dropdown({
-		previewer = false,
-		attach_mappings = function(_, map)
-			map("i", "<CR>", function(prompt_bufnr)
-				local selection = require("telescope.actions.state").get_selected_entry()
-				require("telescope.actions").close(prompt_bufnr)
-				require("gitsigns").change_base(selection.value)
-			end)
-			return true
-		end,
-	}))
-end
-
-M.test_fzf = function()
-	require("fzf-lua").files({
-		fn_transform = function(entry)
-			print(require("fzf-lua").make_entry.file(entry))
-			return entry
-		end,
+	require("fzf-lua").git_branches({
+		actions = {
+			["default"] = function(selected)
+				require("gitsigns").change_base(selected[1])
+			end,
+		},
 	})
 end
 
-M.toggleterm_cwd = function()
-	local cwd = M.get_cwd()
-	vim.cmd('TermExec cmd="source ~/.zshrc && source ~/.nvm/nvm.sh && nvm use 18" direction=tab dir=' .. cwd)
+M.open_split_to_cwd = function()
+	local splits = vim.api.nvim_list_wins()
+	if #splits == 1 then
+		vim.cmd("vsplit")
+		vim.cmd()
+	end
+
+	if #splits > 1 then
+		vim.cmd("wincmd l")
+	end
 end
 
 return M
