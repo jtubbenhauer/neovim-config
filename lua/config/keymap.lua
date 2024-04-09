@@ -158,6 +158,8 @@ add({
 set("n", "<leader>ch", "<cmd>ChatGPT<cr>")
 set("n", "<leader>che", "<cmd>ChatGPTEditWithInstructions<cr>")
 
+set("n", "<leader>cp", ":lua require('copilot.suggestion').toggle_auto_trigger()<cr>")
+
 -- Aerial
 add({ mode = "n", lhs = "<leader>ae", rhs = ":AerialToggle<cr>", desc = "Toggle Aerial", category = "Aerial" })
 
