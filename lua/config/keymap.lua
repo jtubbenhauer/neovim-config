@@ -50,7 +50,7 @@ add({
 add({
 	mode = "n",
 	lhs = "<leader>so",
-	rhs = ":lua require('fzf-lua').oldfiles()<cr>",
+	rhs = ":lua require('fzf-lua').buffers()<cr>",
 	desc = "Search recent files",
 	category = "Search",
 })
@@ -106,7 +106,6 @@ set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>")
 set("n", "gn", ":lua vim.diagnostic.goto_next()<CR>")
 set("n", "gp", ":lua vim.diagnostic.goto_prev()<CR>")
 set("n", "ge", ":lua vim.diagnostic.open_float()<CR>")
-set("n", "gd", ":lua require('fzf-lua').lsp_definitions()<CR>")
 set("n", "gr", ":lua require('fzf-lua').lsp_references()<CR>")
 set("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
 
@@ -154,11 +153,14 @@ add({
 	category = "Diffview",
 })
 
+set("n", "<leader>dvfh", "<cmd>DiffviewFileHistory %<cr>")
+
 -- ChatGPT
 set("n", "<leader>ch", "<cmd>ChatGPT<cr>")
 set("n", "<leader>che", "<cmd>ChatGPTEditWithInstructions<cr>")
 
-set("n", "<leader>cp", ":lua require('copilot.suggestion').toggle_auto_trigger()<cr>")
+set("n", "<leader>cpt", ":lua require('copilot.suggestion').toggle_auto_trigger()<cr>")
+set("n", "<leader>cpc", ":lua require('utils').copilot_chat()<cr>")
 
 -- Aerial
 add({ mode = "n", lhs = "<leader>ae", rhs = ":AerialToggle<cr>", desc = "Toggle Aerial", category = "Aerial" })

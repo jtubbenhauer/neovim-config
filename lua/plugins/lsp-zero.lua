@@ -19,8 +19,6 @@ local M = {
 			lsp.extend_lspconfig()
 			local util = require("lspconfig").util
 			lsp.on_attach(function(_, bufnr)
-				-- see :help lsp-zero-keybindings
-				-- to learn the available actions
 				lsp.default_keymaps({ buffer = bufnr })
 			end)
 
@@ -39,11 +37,11 @@ local M = {
 						})
 					end,
 
-					-- vtsls = function()
-					-- 	require("lspconfig").vtsls.setup({
-					-- 		capabilities = capabilities,
-					-- 	})
-					-- end,
+					vtsls = function()
+						require("lspconfig").vtsls.setup({
+							capabilities = capabilities,
+						})
+					end,
 
 					-- tsserver = function()
 					-- 	require("lspconfig").tsserver.setup({
