@@ -7,6 +7,13 @@ set("n", "<leader>hr", gs.reset_hunk)
 
 add({
 	mode = "n",
+	lhs = "<leader>fz",
+	rhs = ":lua require('fzf-lua').builtin({ winopts = { fullscreen=false, height=0.8, width=0.5 } })<cr>",
+	desc = "Fzf Builtins",
+	category = "Search",
+})
+add({
+	mode = "n",
 	lhs = "<leader>sf",
 	rhs = ":lua require('fzf-lua').files()<cr>",
 	desc = "Search files",
