@@ -1,5 +1,6 @@
 local M = {
-	dir = "~/dev/nvim-plugins/dressing.nvim",
+	-- dir = "~/dev/nvim-plugins/dressing.nvim",
+	dir = "stevearc/dressing.nvim",
 	config = function()
 		require("dressing").setup({
 			select = {
