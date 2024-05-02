@@ -34,6 +34,7 @@
   "plenary.nvim": { "branch": "master", "commit": "08e301982b9a057110ede7a735dd1b5285eb341f" },
   "possession.nvim": { "branch": "master", "commit": "d4a071e26ba49d147c6ceaa7fe209d6c6e5d10fd" },
   "scratch.nvim": { "branch": "main", "commit": "9b35cf9ff22f243cea72febc37416897d6eae184" },
+  "selfhelp.nvim": { "branch": "main", "commit": "edffd7f9564fea2a210a9ddb0ce062b4a2687d82" },
   "telescope.nvim": { "branch": "master", "commit": "35f94f0ef32d70e3664a703cefbe71bd1456d899" },
   "vim-illuminate": { "branch": "master", "commit": "e522e0dd742a83506db0a72e1ced68c9c130f185" }
 }
