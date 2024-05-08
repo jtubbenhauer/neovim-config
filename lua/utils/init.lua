@@ -99,7 +99,9 @@ M.change_git_signs_base = function()
 	require("fzf-lua").git_branches({
 		actions = {
 			["default"] = function(selected)
-				require("gitsigns").change_base(selected[1])
+				local str = selected[1]
+				str = str:gsub("^%s*(.-)%s*$", "%1") -- remove leading and trailing whitespace
+				require("gitsigns").change_base(str)
 			end,
 		},
 	})

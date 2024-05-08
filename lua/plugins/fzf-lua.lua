@@ -3,15 +3,13 @@ local M = {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		require("fzf-lua").setup({
+			defaults = {
+				formatter = "path.filename_first",
+			},
 			files = {
 				fzf_opts = {
 					["--keep-right"] = true,
 				},
-				-- fzf_opts = {
-				-- 	["--delimiter"] = "/",
-				-- 	["--with-nth"] = "-1,1..-2",
-				-- },
-				-- file_icons = false,
 			},
 			git = {
 				files = {
@@ -35,7 +33,7 @@ local M = {
 				fullscreen = true,
 				preview = {
 					layout = "horizontal",
-					horizontal = "right:50%",
+					horizontal = "right:40%",
 				},
 			},
 		})
