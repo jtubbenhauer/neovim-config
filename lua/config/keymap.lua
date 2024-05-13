@@ -114,6 +114,7 @@ set("n", "gn", ":lua vim.diagnostic.goto_next()<CR>")
 set("n", "gp", ":lua vim.diagnostic.goto_prev()<CR>")
 set("n", "ge", ":lua vim.diagnostic.open_float()<CR>")
 set("n", "gr", ":lua require('fzf-lua').lsp_references()<CR>")
+set("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
 set("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
 
 vim.keymap.set("n", "<leader>ti", function()
