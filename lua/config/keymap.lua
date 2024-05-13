@@ -6,39 +6,39 @@ set("n", "<leader>hr", gs.reset_hunk)
 -- Fzf
 
 add({
-	mode = "n",
-	lhs = "<leader>fz",
-	rhs = ":lua require('fzf-lua').builtin({ winopts = { fullscreen=false, height=0.8, width=0.5 } })<cr>",
-	desc = "Fzf Builtins",
-	category = "Search",
+  mode = "n",
+  lhs = "<leader>fz",
+  rhs = ":lua require('fzf-lua').builtin({ winopts = { fullscreen=false, height=0.8, width=0.5 } })<cr>",
+  desc = "Fzf Builtins",
+  category = "Search",
 })
 add({
-	mode = "n",
-	lhs = "<leader>sf",
-	rhs = ":lua require('fzf-lua').files()<cr>",
-	desc = "Search files",
-	category = "Search",
+  mode = "n",
+  lhs = "<leader>sf",
+  rhs = ":lua require('fzf-lua').files()<cr>",
+  desc = "Search files",
+  category = "Search",
 })
 add({
-	mode = "n",
-	lhs = "<leader>ss",
-	rhs = ":lua require('fzf-lua').git_status()<cr>",
-	desc = "Search git status",
-	category = "Search",
+  mode = "n",
+  lhs = "<leader>ss",
+  rhs = ":lua require('fzf-lua').git_status()<cr>",
+  desc = "Search git status",
+  category = "Search",
 })
 add({
-	mode = "n",
-	lhs = "<leader>sc",
-	rhs = ":lua require('utils').fzf_git_changes()<cr>",
-	desc = "Search git changes",
-	category = "Search",
+  mode = "n",
+  lhs = "<leader>sc",
+  rhs = ":lua require('utils').fzf_git_changes()<cr>",
+  desc = "Search git changes",
+  category = "Search",
 })
 add({
-	mode = "n",
-	lhs = "<leader>qf",
-	rhs = ":lua require('fzf-lua').quickfix()<cr>",
-	desc = "Search quickfix",
-	category = "Search",
+  mode = "n",
+  lhs = "<leader>qf",
+  rhs = ":lua require('fzf-lua').quickfix()<cr>",
+  desc = "Search quickfix",
+  category = "Search",
 })
 -- add({
 -- 	mode = "n",
@@ -48,79 +48,73 @@ add({
 -- 	category = "Search",
 -- })
 add({
-	mode = "n",
-	lhs = "<leader>sg",
-	rhs = ":lua require('fzf-lua').live_grep()<cr>",
-	desc = "Search live grep",
-	category = "Search",
+  mode = "n",
+  lhs = "<leader>sg",
+  rhs = ":lua require('fzf-lua').live_grep()<cr>",
+  desc = "Search live grep",
+  category = "Search",
 })
 add({
-	mode = "n",
-	lhs = "<leader>so",
-	rhs = ":lua require('fzf-lua').buffers()<cr>",
-	desc = "Search recent files",
-	category = "Search",
+  mode = "n",
+  lhs = "<leader>so",
+  rhs = ":lua require('fzf-lua').buffers()<cr>",
+  desc = "Search recent files",
+  category = "Search",
 })
 add({
-	mode = "n",
-	lhs = "<leader>sa",
-	rhs = ":lua require('fzf-lua').resume()<cr>",
-	desc = "Resume last search",
-	category = "Search",
+  mode = "n",
+  lhs = "<leader>sa",
+  rhs = ":lua require('fzf-lua').resume()<cr>",
+  desc = "Resume last search",
+  category = "Search",
 })
 add({
-	mode = "n",
-	lhs = "<leader>sd",
-	rhs = ":lua require('utils').fzf_dirs()<cr>",
-	desc = "Search directory",
-	category = "Search",
+  mode = "n",
+  lhs = "<leader>sd",
+  rhs = ":lua require('utils').fzf_dirs()<cr>",
+  desc = "Search directory",
+  category = "Search",
 })
 add({
-	mode = "n",
-	lhs = "<leader>si",
-	rhs = ":lua require('utils').grep_directory()<cr>",
-	desc = "Grep in directory",
-	category = "Search",
+  mode = "n",
+  lhs = "<leader>si",
+  rhs = ":lua require('utils').grep_directory()<cr>",
+  desc = "Grep in directory",
+  category = "Search",
 })
 
 add({
-	mode = "n",
-	lhs = "<leader>qq",
-	rhs = ":SelfHelp<cr>",
-	desc = "Show help",
-	category = "General",
+  mode = "n",
+  lhs = "<leader>qq",
+  rhs = ":SelfHelp<cr>",
+  desc = "Show help",
+  category = "General",
 })
 
 -- File browser
 add({
-	mode = "n",
-	lhs = "<leader>er",
-	rhs = ":Oil .<cr>",
-	desc = "Open file browser in root directory",
-	category = "File Browser",
+  mode = "n",
+  lhs = "<leader>er",
+  rhs = ":Oil .<cr>",
+  desc = "Open file browser in root directory",
+  category = "File Browser",
 })
 add({
-	mode = "n",
-	lhs = "<leader>ed",
-	rhs = ":Oil<cr>",
-	desc = "Open file browser in current directory",
-	category = "File Browser",
+  mode = "n",
+  lhs = "<leader>ed",
+  rhs = ":Oil<cr>",
+  desc = "Open file browser in current directory",
+  category = "File Browser",
 })
 
 -- LSP
-set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
-set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>")
-set("n", "gn", ":lua vim.diagnostic.goto_next()<CR>")
-set("n", "gp", ":lua vim.diagnostic.goto_prev()<CR>")
-set("n", "ge", ":lua vim.diagnostic.open_float()<CR>")
-set("n", "gr", ":lua require('fzf-lua').lsp_references()<CR>")
-set("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
-
-vim.keymap.set("n", "<leader>ti", function()
-	-- vim.b[bufnr].inlay_hints_enabled = not vim.b[bufnr].inlay_hints_enabled
-	-- vim.lsp.inlay_hint(bufnr, vim.b[bufnr].inlay_hints_enabled)
-	vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
-end, { desc = "LSP: [T]oggle [I]nlay Hints" })
+-- set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
+-- set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>")
+-- set("n", "gn", ":lua vim.diagnostic.goto_next()<CR>")
+-- set("n", "gp", ":lua vim.diagnostic.goto_prev()<CR>")
+-- set("n", "ge", ":lua vim.diagnostic.open_float()<CR>")
+-- set("n", "gr", ":lua require('fzf-lua').lsp_references()<CR>")
+-- set("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
 
 -- General
 set("n", "<C-s>", "<cmd>w<cr>")
@@ -139,25 +133,25 @@ add({ mode = "n", lhs = "<leader>sl", rhs = ":SLoad default<CR>", desc = "Load s
 
 -- Diffview
 add({
-	mode = "n",
-	lhs = "<leader>ds",
-	rhs = ":lua require('utils').toggle_diffview_status()<CR>",
-	desc = "Toggle diffview status",
-	category = "Diffview",
+  mode = "n",
+  lhs = "<leader>ds",
+  rhs = ":lua require('utils').toggle_diffview_status()<CR>",
+  desc = "Toggle diffview status",
+  category = "Diffview",
 })
 add({
-	mode = "n",
-	lhs = "<leader>db",
-	rhs = ":lua require('utils').toggle_diffview_branch()<CR>",
-	desc = "Toggle diffview branch",
-	category = "Diffview",
+  mode = "n",
+  lhs = "<leader>db",
+  rhs = ":lua require('utils').toggle_diffview_branch()<CR>",
+  desc = "Toggle diffview branch",
+  category = "Diffview",
 })
 add({
-	mode = "n",
-	lhs = "<leader>dh",
-	rhs = ":DiffviewFileHistory %<CR>",
-	desc = "Diffview file history",
-	category = "Diffview",
+  mode = "n",
+  lhs = "<leader>dh",
+  rhs = ":DiffviewFileHistory %<CR>",
+  desc = "Diffview file history",
+  category = "Diffview",
 })
 
 set("n", "<leader>dvfh", "<cmd>DiffviewFileHistory %<cr>")
@@ -174,34 +168,34 @@ add({ mode = "n", lhs = "<leader>ae", rhs = ":AerialToggle<cr>", desc = "Toggle 
 
 -- Spectre
 add({
-	mode = "n",
-	lhs = "<leader>sr",
-	rhs = ":lua require('spectre').toggle()<cr>",
-	desc = "Search and replace",
-	category = "Spectre",
+  mode = "n",
+  lhs = "<leader>sr",
+  rhs = ":lua require('spectre').toggle()<cr>",
+  desc = "Search and replace",
+  category = "Spectre",
 })
 
 -- Git
 add({
-	mode = "n",
-	lhs = "<leader>gsb",
-	rhs = ':lua require("utils").change_git_signs_base()<cr>',
-	desc = "Change git signs base branch",
-	category = "Git",
+  mode = "n",
+  lhs = "<leader>gsb",
+  rhs = ':lua require("utils").change_git_signs_base()<cr>',
+  desc = "Change git signs base branch",
+  category = "Git",
 })
 add({
-	mode = "n",
-	lhs = "<leader>gs",
-	rhs = ":vertical G<cr>",
-	desc = "Git status",
-	category = "Git",
+  mode = "n",
+  lhs = "<leader>gs",
+  rhs = ":vertical G<cr>",
+  desc = "Git status",
+  category = "Git",
 })
 
 -- Oil
 add({
-	mode = "n",
-	lhs = "<leader>dc",
-	rhs = ":lua require('utils').get_trimmed_cwd()<cr>",
-	desc = "Print current oil directory",
-	category = "Oil",
+  mode = "n",
+  lhs = "<leader>dc",
+  rhs = ":lua require('utils').get_trimmed_cwd()<cr>",
+  desc = "Print current oil directory",
+  category = "Oil",
 })

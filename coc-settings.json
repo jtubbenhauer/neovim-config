@@ -1,0 +1,7 @@
+{
+  "coc.preferences.formatOnSave": true,
+  "git.signPriority": 1,
+  "diagnostic.enableSign": false,
+  "diagnostic.enableHighlightLineNumber": false,
+  "diagnostic.hintSign": ""
+}

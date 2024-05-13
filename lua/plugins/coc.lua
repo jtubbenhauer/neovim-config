@@ -3,4 +3,4 @@ local M = {
 	branch = "release",
 }
 
-return {}
+return M
