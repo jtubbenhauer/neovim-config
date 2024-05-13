@@ -1,10 +1,12 @@
 local M = {
-	dir = "~/dev/nvim-plugins/oil.nvim",
-	-- "stevearc/oil.nvim",
+	-- dir = "~/dev/nvim-plugins/oil.nvim",
+	"stevearc/oil.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		require("oil").setup({
-			lsp_rename_autosave = true,
+			lsp_file_methods = {
+				autosave_changes = true,
+			},
 			view_options = {
 				show_hidden = true,
 			},
