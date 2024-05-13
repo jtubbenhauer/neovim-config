@@ -52,6 +52,7 @@ local M = {
 
 		local servers = {
 			tsserver = {},
+			eslint = {},
 			angularls = {
 				root_dir = require("lspconfig.util").root_pattern("angular.json", "project.json", ".git"),
 				on_init = function(client)
