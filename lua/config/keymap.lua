@@ -94,20 +94,14 @@ add({
 })
 
 -- LSP
-set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
-set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>")
-set("n", "gn", ":lua vim.diagnostic.goto_next()<CR>")
-set("n", "gp", ":lua vim.diagnostic.goto_prev()<CR>")
-set("n", "ge", ":lua vim.diagnostic.open_float()<CR>")
-set("n", "gr", ":lua require('fzf-lua').lsp_references()<CR>")
-set("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
-set("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
-
-vim.keymap.set("n", "<leader>ti", function()
-	-- vim.b[bufnr].inlay_hints_enabled = not vim.b[bufnr].inlay_hints_enabled
-	-- vim.lsp.inlay_hint(bufnr, vim.b[bufnr].inlay_hints_enabled)
-	vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
-end, { desc = "LSP: [T]oggle [I]nlay Hints" })
+-- set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
+-- set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>")
+-- set("n", "gn", ":lua vim.diagnostic.goto_next()<CR>")
+-- set("n", "gp", ":lua vim.diagnostic.goto_prev()<CR>")
+-- set("n", "ge", ":lua vim.diagnostic.open_float()<CR>")
+-- set("n", "gr", ":lua require('fzf-lua').lsp_references()<CR>")
+-- set("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
+-- set("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
 
 -- General
 set("n", "<C-s>", "<cmd>w<cr>")
@@ -174,3 +168,53 @@ set("n", "<leader>gsb", ":lua require('utils').change_git_signs_base()<cr>")
 
 -- Oil
 set("n", "<leader>dc", ":lua require('utils').get_trimmed_cwd()<cr>")
+
+-- COC
+local coc_opts = {
+    silent = true,
+    noremap = true,
+    expr = true,
+    replace_keycodes = false
+}
+function _G.check_back_space()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+
+-- set('i', '<Cr>',
+-- function()
+--     -- Returns 1 if visible, 0 if not
+--     local is_visible = vim.fn['coc#pum#visible']()
+--     if is_visible == 1 then
+--         return vim.fn['coc#pum#confirm']()
+--     else
+--         return '<Cr>'
+--     end
+-- end, coc_opts)
+set('i','<CR>', 'coc#pum#visible() ? coc#pum#confirm() : "<CR>"', coc_opts)
+set("i", "<C-j>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<C-k>" : coc#refresh()', coc_opts)
+set("i", "<C-k>", [[coc#pum#visible() ? coc#pum#prev(1) : "<C-j>"]], coc_opts)
+
+local ca_opts = {
+  silent = true,
+  nowait = true
+}
+set("n", "<leader>rn", "<Plug>(coc-rename)", { silent = true })
+set("n", "<leader>ca", "<Plug>(coc-codeaction-cursor)", ca_opts)
+set("n", "gn", "<Plug>(coc-diagnostic-next)", { silent = true })
+set("n", "gp", "<Plug>(coc-diagnostic-prev)", { silent = true })
+set("n", "ge", "<Plug>(coc-diagnostic-info)", { silent = true })
+set("n", "gr", "<Plug>(coc-references)", { silent = true })
+set("n", "gd", "<Plug>(coc-definition)", { silent = true })
+
+function _G.show_docs()
+    local cw = vim.fn.expand('<cword>')
+    if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
+        vim.api.nvim_command('h ' .. cw)
+    elseif vim.api.nvim_eval('coc#rpc#ready()') then
+        vim.fn.CocActionAsync('doHover')
+    else
+        vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+    end
+end
+set("n", "gh", "<CMD>lua _G.show_docs()<CR>", {silent = true})

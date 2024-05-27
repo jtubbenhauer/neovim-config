@@ -1,0 +1,9 @@
+{
+  "coc.preferences.formatOnSave": true,
+  "git.enableGutters": false,
+  "diagnostic.hintSign": " ",
+  "diagnostic.warningSign": " ",
+  "diagnostic.errorSign": ">",
+  "diagnostic.enableMessage": "jump",
+  "workspace.rootPatterns": [".git", ".hg", ".projections.json"]
+}
