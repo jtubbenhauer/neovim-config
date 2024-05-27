@@ -38,23 +38,19 @@ local M = {
 						end,
 					})
 				end
-
-				-- if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-				-- 	map("<leader>th", function()
-				-- 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-				-- 	end, "[T]oggle Inlay [H]ints")
-				-- end
 			end,
 		})
-
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 
 		local servers = {
-			tsserver = {},
-			eslint = {},
+			vtsls = {
+				root_dir = require("lspconfig.util").root_pattern(".git"),
+			},
 			angularls = {
-				root_dir = require("lspconfig.util").root_pattern("angular.json", "project.json", ".git"),
+				-- root_dir = require("lspconfig.util").root_pattern("angular.json", "project.json", ".git"),
+				root_dir = require("lspconfig.util").root_pattern(".git"),
 				on_init = function(client)
 					client.server_capabilities.renameProvider = false
 				end,
@@ -83,11 +79,20 @@ local M = {
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+		local handlers = {
+			["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single", max_width = 100 }),
+			["textDocument/signatureHelp"] = vim.lsp.with(
+				vim.lsp.handlers.signature_help,
+				{ border = "single", max_width = 100 }
+			),
+		}
+
 		require("mason-lspconfig").setup({
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+					server.handlers = vim.tbl_deep_extend("force", handlers, server.handlers or {})
 					require("lspconfig")[server_name].setup(server)
 				end,
 			},

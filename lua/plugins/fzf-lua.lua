@@ -6,23 +6,6 @@ local M = {
 			defaults = {
 				formatter = "path.filename_first",
 			},
-			files = {
-				fzf_opts = {
-					["--keep-right"] = true,
-				},
-			},
-			git = {
-				files = {
-					fzf_opts = {
-						["--keep-right"] = true,
-					},
-				},
-				status = {
-					fzf_opts = {
-						["--keep-right"] = true,
-					},
-				},
-			},
 			keymap = {
 				fzf = {
 					["ctrl-d"] = "half-page-down",

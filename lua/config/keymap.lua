@@ -1,17 +1,10 @@
 local set = vim.keymap.set
 local add = require("selfhelp").add
-
 local gs = require("gitsigns")
-set("n", "<leader>hr", gs.reset_hunk)
+
 -- Fzf
 
-add({
-	mode = "n",
-	lhs = "<leader>fz",
-	rhs = ":lua require('fzf-lua').builtin({ winopts = { fullscreen=false, height=0.8, width=0.5 } })<cr>",
-	desc = "Fzf Builtins",
-	category = "Search",
-})
+set("n", "<leader>fz", ":lua require('fzf-lua').builtin({ winopts = { fullscreen=false, height=0.8, width=0.5 } })<cr>")
 add({
 	mode = "n",
 	lhs = "<leader>sf",
@@ -40,13 +33,6 @@ add({
 	desc = "Search quickfix",
 	category = "Search",
 })
--- add({
--- 	mode = "n",
--- 	lhs = "<leader>sw",
--- 	rhs = ":lua require('telescope.builtin').grep_string()<cr>",
--- 	desc = "Grep word under cursor",
--- 	category = "Search",
--- })
 add({
 	mode = "n",
 	lhs = "<leader>sg",
@@ -167,8 +153,8 @@ set("n", "<leader>dvfh", "<cmd>DiffviewFileHistory %<cr>")
 set("n", "<leader>ch", "<cmd>ChatGPT<cr>")
 set("n", "<leader>che", "<cmd>ChatGPTEditWithInstructions<cr>")
 
-set("n", "<leader>cpt", ":lua require('copilot.suggestion').toggle_auto_trigger()<cr>")
 set("n", "<leader>cpc", ":lua require('utils').copilot_chat()<cr>")
+set("n", "<leader>cpt", ":lua require('utils').copilot_chat_toggle()<cr>")
 
 -- Aerial
 add({ mode = "n", lhs = "<leader>ae", rhs = ":AerialToggle<cr>", desc = "Toggle Aerial", category = "Aerial" })
@@ -183,26 +169,8 @@ add({
 })
 
 -- Git
-add({
-	mode = "n",
-	lhs = "<leader>gsb",
-	rhs = ':lua require("utils").change_git_signs_base()<cr>',
-	desc = "Change git signs base branch",
-	category = "Git",
-})
-add({
-	mode = "n",
-	lhs = "<leader>gs",
-	rhs = ":vertical G<cr>",
-	desc = "Git status",
-	category = "Git",
-})
+set("n", "<leader>hr", gs.reset_hunk)
+set("n", "<leader>gsb", ":lua require('utils').change_git_signs_base()<cr>")
 
 -- Oil
-add({
-	mode = "n",
-	lhs = "<leader>dc",
-	rhs = ":lua require('utils').get_trimmed_cwd()<cr>",
-	desc = "Print current oil directory",
-	category = "Oil",
-})
+set("n", "<leader>dc", ":lua require('utils').get_trimmed_cwd()<cr>")
