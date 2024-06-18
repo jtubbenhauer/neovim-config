@@ -10,7 +10,7 @@ local M = {
 		-- See Configuration section for rest
 
 		window = {
-			layout = "float",
+			layout = "vertical",
 			-- width = 0.5,
 			-- height = 0.5,
 		},

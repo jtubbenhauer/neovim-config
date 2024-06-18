@@ -96,12 +96,12 @@ add({
 -- LSP
 set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
 set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>")
-set("n", "gn", ":lua vim.diagnostic.goto_next()<CR>")
-set("n", "gp", ":lua vim.diagnostic.goto_prev()<CR>")
+-- set("n", "gn", ":lua vim.diagnostic.goto_next()<CR>")
+-- set("n", "gp", ":lua vim.diagnostic.goto_prev()<CR>")
 set("n", "ge", ":lua vim.diagnostic.open_float()<CR>")
 set("n", "gr", ":lua require('fzf-lua').lsp_references()<CR>")
 set("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
-set("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
+-- set("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
 
 vim.keymap.set("n", "<leader>ti", function()
 	-- vim.b[bufnr].inlay_hints_enabled = not vim.b[bufnr].inlay_hints_enabled
